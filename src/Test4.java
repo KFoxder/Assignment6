@@ -1,7 +1,7 @@
 /**
  * Test1 -- Example test class extending {@link TestHarness}
  * <p>
- * This test creates a Graph with a few nodes/edges
+ * Tests findNode on empty Graph
  * ***********************************************************************<br>
  * Computer Science 102: Data Structures<br>
  * New York University, Fall 2013,<br>
@@ -13,26 +13,25 @@
  * @since       2013-11-25
  */
 
-public class Test1 extends TestHarness {
+public class Test4 extends TestHarness {
 
-    public Test1(String s) { super(s); }
+    public Test4(String s) { super(s); }
 
     public boolean test() {
 	Graph<String,Integer> g = new Graph<String,Integer>();
 	Node<String,Integer> n1;
 
 	try {
-	    // Create two nodes and an edge between them
-	    n1 = g.addNode("a");
-	    Node<String,Integer> n2 = g.addNode("B");
-	    g.addEdge("a",15,"B");
+	    n1 = g.findNode("H");
 	    System.out.println(g.toString());
-	} catch (InvalidOperationException e) {
+	    
+	} catch (Exception e) {
+		e.printStackTrace();
 	    return false;
 	}
 
 	// Make sure n1's toStringWithEdges() works correctly
-	if(!n1.toStringWithEdges().equals("Node(a)\n  --Edge(15)-->Node(B)\n"))
+	if(!(n1==null))
 	    return false;
 
 	System.out.println(g.toString());

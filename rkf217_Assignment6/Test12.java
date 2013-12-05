@@ -1,7 +1,7 @@
 /**
  * Test1 -- Example test class extending {@link TestHarness}
  * <p>
- * This test creates a Graph with a few nodes/edges
+ * Tests adding edge twice
  * ***********************************************************************<br>
  * Computer Science 102: Data Structures<br>
  * New York University, Fall 2013,<br>
@@ -13,30 +13,32 @@
  * @since       2013-11-25
  */
 
-public class Test1 extends TestHarness {
+public class Test12 extends TestHarness {
 
-    public Test1(String s) { super(s); }
+    public Test12(String s) { super(s); }
 
     public boolean test() {
 	Graph<String,Integer> g = new Graph<String,Integer>();
 	Node<String,Integer> n1;
+	Node<String,Integer> n2;
 
 	try {
-	    // Create two nodes and an edge between them
-	    n1 = g.addNode("a");
-	    Node<String,Integer> n2 = g.addNode("B");
-	    g.addEdge("a",15,"B");
-	    System.out.println(g.toString());
-	} catch (InvalidOperationException e) {
+	    n1 = g.addNode("Kevin");
+	    n2 = g.addNode("Mark");
+	    g.addEdge(n1, 1, n2);
+	    g.addBiEdge("Kevin", 1, "Mark");
+	    
 	    return false;
+	    
+	} catch (InvalidOperationException e) {
+		//e.printStackTrace();
+	    return true;
+	} catch (Exception e){
+		//e.printStackTrace();
+		return false;
 	}
 
 	// Make sure n1's toStringWithEdges() works correctly
-	if(!n1.toStringWithEdges().equals("Node(a)\n  --Edge(15)-->Node(B)\n"))
-	    return false;
-
-	System.out.println(g.toString());
-	return true;
     }
 
 }
